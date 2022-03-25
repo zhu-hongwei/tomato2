@@ -11,7 +11,7 @@ input.onButtonPressed(Button.A, function () {
             `)
         basic.pause(1000*60*10)
         basic.showArrow(ArrowNames.South)
-        music.playMelody("C D E F G A B C5 ", 120)
+        TIP_sound_and_zhendong()
         mins += 10
         working = 0
         funing = 1
@@ -24,25 +24,30 @@ input.onButtonPressed(Button.A, function () {
             `)
         basic.pause(1000*60*2)
         basic.showArrow(ArrowNames.North)
-        music.playMelody("C D E F G A B C5 ", 120)
+        TIP_sound_and_zhendong()
         working = 0
         funing = 0
     } else {
-        basic.showIcon(IconNames.No)
         tip()
     }
 })
 function tip () {
     if (working == 1) {
-        basic.showString("working")
+        basic.showString("w")
     } else if (funing == 1) {
-        basic.showString("funing")
+        basic.showString("f")
     } else {
     	
     }
 }
+function TIP_sound_and_zhendong () {
+    music.playMelody("C D E F G A B C5 ", 120)
+    pins.digitalWritePin(DigitalPin.P12, 1)
+    basic.pause(3000)
+    pins.digitalWritePin(DigitalPin.P12, 0)
+}
 input.onGesture(Gesture.Shake, function () {
-    if (working == 0 && funing == 0) {
+    if (working == 0) {
         basic.clearScreen()
         basic.showString("" + (mins))
     } else {
@@ -50,7 +55,7 @@ input.onGesture(Gesture.Shake, function () {
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    if (working == 0 && funing == 0) {
+    if (working == 0) {
         mins += 10
     } else {
         tip()
@@ -69,7 +74,7 @@ input.onButtonPressed(Button.B, function () {
             `)
         basic.pause(1000*60*20)
         basic.showArrow(ArrowNames.South)
-        music.playMelody("C D E F G A B C5 ", 120)
+        TIP_sound_and_zhendong()
         mins += 20
         working = 0
         funing = 1
@@ -82,11 +87,10 @@ input.onButtonPressed(Button.B, function () {
             `)
         basic.pause(1000*60*4)
         basic.showArrow(ArrowNames.North)
-        music.playMelody("C D E F G A B C5 ", 120)
+        TIP_sound_and_zhendong()
         working = 0
         funing = 0
     } else {
-        basic.showIcon(IconNames.No)
         tip()
     }
 })
@@ -96,6 +100,7 @@ let working = 0
 working = 0
 funing = 0
 mins = 0
-basic.showIcon(IconNames.Happy)
 music.setVolume(150)
-music.playMelody("C D E F G A B C5 ", 200)
+pins.digitalWritePin(DigitalPin.P12, 0)
+basic.showIcon(IconNames.Happy)
+TIP_sound_and_zhendong()
