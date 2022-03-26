@@ -43,22 +43,22 @@ function tip () {
 function TIP_sound_and_zhendong () {
     music.playMelody("C D E F G A B C5 ", 120)
     pins.digitalWritePin(DigitalPin.P12, 1)
-    basic.pause(3000)
+    basic.pause(1000)
     pins.digitalWritePin(DigitalPin.P12, 0)
 }
 input.onGesture(Gesture.Shake, function () {
-    if (working == 0) {
+    if (working == 0 && funing == 0) {
         basic.clearScreen()
         basic.showString("" + (mins))
     } else {
-        tip()
+    	
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    if (working == 0) {
+    if (working == 0 && funing == 0) {
         mins += 10
     } else {
-        tip()
+    	
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -103,4 +103,3 @@ mins = 0
 music.setVolume(150)
 pins.digitalWritePin(DigitalPin.P12, 0)
 basic.showIcon(IconNames.Happy)
-TIP_sound_and_zhendong()
