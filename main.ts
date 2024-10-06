@@ -67,23 +67,24 @@ input.onButtonPressed(Button.B, function () {
             # # # # #
             . . . . .
             `)
-        for (let index = 0; index < 600; index++) {
+        for (let index = 0; index < 1200; index++) {
             basic.pause(1000)
         }
-        basic.showArrow(ArrowNames.South)
         TIP_sound_and_zhendong()
         mins += 20
         working = 0
         funing = 1
-        basic.showLeds(`
-            # . . . .
-            # . . . .
-            # . . . .
-            # . . . .
-            . . . . .
-            `)
-        basic.pause(null)
-        basic.showArrow(ArrowNames.North)
+        for (let index = 0; index < 1200; index++) {
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                # # # # #
+                # # # # #
+                . . . . .
+                `)
+            basic.showIcon(IconNames.Heart)
+        }
+        basic.pause(1000)
         TIP_sound_and_zhendong()
         working = 0
         funing = 0
