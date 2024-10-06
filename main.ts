@@ -9,21 +9,24 @@ input.onButtonPressed(Button.A, function () {
             . . . . .
             . . . . .
             `)
-        basic.pause(1000*60*10)
-        basic.showArrow(ArrowNames.South)
+        for (let index = 0; index < 600; index++) {
+            basic.pause(1000)
+        }
         TIP_sound_and_zhendong()
         mins += 10
         working = 0
         funing = 1
-        basic.showLeds(`
-            # . . . .
-            # . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
-        basic.pause(1000*60*2)
-        basic.showArrow(ArrowNames.North)
+        for (let index = 0; index < 600; index++) {
+            basic.showLeds(`
+                # # # # #
+                # # # # #
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+            basic.showIcon(IconNames.Heart)
+        }
+        basic.pause(1000)
         TIP_sound_and_zhendong()
         working = 0
         funing = 0
@@ -46,14 +49,6 @@ function TIP_sound_and_zhendong () {
     basic.pause(1000)
     pins.digitalWritePin(DigitalPin.P12, 0)
 }
-input.onGesture(Gesture.Shake, function () {
-    if (working == 0 && funing == 0) {
-        basic.clearScreen()
-        basic.showString("" + (mins))
-    } else {
-    	
-    }
-})
 input.onButtonPressed(Button.AB, function () {
     if (working == 0 && funing == 0) {
         mins += 10
@@ -72,7 +67,9 @@ input.onButtonPressed(Button.B, function () {
             # # # # #
             . . . . .
             `)
-        basic.pause(1000*60*20)
+        for (let index = 0; index < 600; index++) {
+            basic.pause(1000)
+        }
         basic.showArrow(ArrowNames.South)
         TIP_sound_and_zhendong()
         mins += 20
@@ -85,13 +82,21 @@ input.onButtonPressed(Button.B, function () {
             # . . . .
             . . . . .
             `)
-        basic.pause(1000*60*4)
+        basic.pause(null)
         basic.showArrow(ArrowNames.North)
         TIP_sound_and_zhendong()
         working = 0
         funing = 0
     } else {
         tip()
+    }
+})
+input.onGesture(Gesture.Shake, function () {
+    if (working == 0 && funing == 0) {
+        basic.clearScreen()
+        basic.showString("" + (mins))
+    } else {
+    	
     }
 })
 let mins = 0
