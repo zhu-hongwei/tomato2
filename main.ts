@@ -1,3 +1,10 @@
+function delay_time (num: number) {
+    for (let index = 0; index < num; index++) {
+        for (let index = 0; index < 60; index++) {
+            basic.pause(1000)
+        }
+    }
+}
 input.onButtonPressed(Button.A, function () {
     if (working == 0 && funing == 0) {
         working = 1
@@ -5,26 +12,24 @@ input.onButtonPressed(Button.A, function () {
         basic.showLeds(`
             # # # # #
             # # # # #
-            . . . . .
+            # # # # #
             . . . . .
             . . . . .
             `)
-        for (let index = 0; index < 600; index++) {
-            basic.pause(1000)
-        }
+        delay_time(15)
         TIP_sound_and_zhendong()
-        mins += 10
+        mins += 15
         working = 0
         funing = 1
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 100; index++) {
             basic.showLeds(`
                 # # # # #
                 # # # # #
-                . . . . .
+                # # # # #
                 . . . . .
                 . . . . .
                 `)
-            basic.showIcon(IconNames.Heart)
+            basic.showIcon(IconNames.Yes)
         }
         TIP_sound_and_zhendong()
         working = 0
@@ -51,8 +56,6 @@ function TIP_sound_and_zhendong () {
 input.onButtonPressed(Button.AB, function () {
     if (working == 0 && funing == 0) {
         mins += 10
-    } else {
-    	
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -64,24 +67,22 @@ input.onButtonPressed(Button.B, function () {
             # # # # #
             # # # # #
             # # # # #
-            . . . . .
+            # # # # #
             `)
-        for (let index = 0; index < 1200; index++) {
-            basic.pause(1000)
-        }
+        delay_time(25)
         TIP_sound_and_zhendong()
-        mins += 20
+        mins += 25
         working = 0
         funing = 1
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < 100; index++) {
             basic.showLeds(`
                 # # # # #
                 # # # # #
                 # # # # #
                 # # # # #
-                . . . . .
+                # # # # #
                 `)
-            basic.showIcon(IconNames.Heart)
+            basic.showIcon(IconNames.Yes)
         }
         TIP_sound_and_zhendong()
         working = 0
@@ -94,8 +95,6 @@ input.onGesture(Gesture.Shake, function () {
     if (working == 0 && funing == 0) {
         basic.clearScreen()
         basic.showString("" + (mins))
-    } else {
-    	
     }
 })
 let mins = 0
@@ -106,4 +105,7 @@ funing = 0
 mins = 0
 music.setVolume(150)
 pins.digitalWritePin(DigitalPin.P12, 0)
-basic.showIcon(IconNames.Happy)
+for (let index = 0; index < 3; index++) {
+    basic.showIcon(IconNames.SmallHeart)
+    basic.showIcon(IconNames.Heart)
+}
